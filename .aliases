@@ -1,0 +1,5 @@
+alias \
+	ll='exa --all --long --header --git' \
+	tree='exa --tree --level=2' \
+	gonuc='cd /Users/gscara/nucl-workspace/workspace' \
+	vim='nvim' \
