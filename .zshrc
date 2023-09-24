@@ -9,15 +9,21 @@ export MAVEN_OPTS="-Xms3072m -Xmx5120m -Djava.awt.headless=true"
 export _JAVA_OPTIONS="-Duser.language=en -Duser.country=GB"
 export JAVA_HOME=$HOME/nucl-workspace/workspace/tooling/jdk-17.0.1.jdk/Contents/Home/
 export nuclear_config_location=$HOME/nucl-workspace/workspace/nucleus-nuclear-config/
-export PATH=/opt/homebrew/bin:$PATH
+if [ "$(arch)" = "i386" ]; then
+	SHARE_DIR=/usr/local/share
+	export PATH=/usr/local/Homebrew/bin:$PATH
+else
+	SHARE_DIR=/opt/homebrew/share
+	export PATH=/opt/homebrew/bin:$PATH
+fi
 export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.8.6/bin:$PATH
 
 # Aliases
 source ~/.aliases
 
 # Zsh tools
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $SHARE_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $SHARE_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey '^ ' autosuggest-accept
 
 # Prompt
