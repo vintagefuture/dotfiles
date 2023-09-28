@@ -43,3 +43,7 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 #export DOCKER_HOST=docker
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Make autocompletion case-insensitive
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
