@@ -37,7 +37,8 @@ precmd() {
 pre.html() { vcs_info }
 zstyle ':vcs_info:git:*' formats '(%b%a)'
 setopt PROMPT_SUBST
-PROMPT='%F{blue}%f%F{green}%n@%m%f %F{yellow}%~%f %F{red}${vcs_info_msg_0_}%f%% '
+export PROMPT_DIRTRIM=1
+PROMPT='%F{green}%*%f %F{blue}%1~ %F{red}${vcs_info_msg_0_}%f '
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

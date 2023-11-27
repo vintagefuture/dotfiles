@@ -4,7 +4,6 @@ alias \
 	tree='exa --tree --level=2' \
 	gonuc='cd /Users/gscara/nucl-workspace/workspace' \
 	vim='nvim' \
-	rm='trash $@' \
 	
 
 
