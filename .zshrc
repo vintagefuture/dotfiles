@@ -27,7 +27,7 @@ source $SHARE_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey '^ ' autosuggest-accept
 
 # Prompt
-autoload -Uz vcs_info
+autoload -Uz vcs_info add-zsh-hook
 precmd() {
   psvar=()
 
@@ -36,7 +36,10 @@ precmd() {
 }
 pre.html() { vcs_info }
 zstyle ':vcs_info:git:*' formats '(%b%a) '
-setopt PROMPT_SUBST
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +i'
+setopt prompt_subst
 export PROMPT_DIRTRIM=1
 PROMPT='%F{green}%*%f %F{blue}%1~ %F{red}${vcs_info_msg_0_}%f'
 export NVM_DIR="$HOME/.nvm"
@@ -48,3 +51,11 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 # Make autocompletion case-insensitive
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Run vcs_info just before a prompt is displayed (precmd)
+add-zsh-hook precmd vcs_info
+
+# Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' formats       '(%b%u%c) '
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c) '
+
