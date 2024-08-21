@@ -9,6 +9,7 @@ export MAVEN_OPTS="-Xms3072m -Xmx5120m -Djava.awt.headless=true"
 export _JAVA_OPTIONS="-Duser.language=en -Duser.country=GB"
 export JAVA_HOME=$HOME/nucl-workspace/workspace/tooling/jdk-17.0.1.jdk/Contents/Home/
 export nuclear_config_location=$HOME/nucl-workspace/workspace/nucleus-nuclear-config/
+export REPOS=/Users/gscara/nucl-workspace/workspace
 if [ "$(arch)" = "i386" ]; then
 	SHARE_DIR=/usr/local/share
 	export PATH=/usr/local/Homebrew/bin:$PATH
@@ -58,4 +59,12 @@ add-zsh-hook precmd vcs_info
 # Set the format of the Git information for vcs_info
 zstyle ':vcs_info:git:*' formats       '(%b%u%c) '
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c) '
+eval "$(direnv hook zsh)"
 
+# Created by `pipx` on 2024-06-27 13:40:16
+export PATH="$PATH:/Users/gscara/.local/bin"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
