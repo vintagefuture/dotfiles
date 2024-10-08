@@ -10,13 +10,18 @@ export _JAVA_OPTIONS="-Duser.language=en -Duser.country=GB"
 export JAVA_HOME=$HOME/nucl-workspace/workspace/tooling/jdk-17.0.1.jdk/Contents/Home/
 export nuclear_config_location=$HOME/nucl-workspace/workspace/nucleus-nuclear-config/
 export REPOS=/Users/gscara/nucl-workspace/workspace
-if [ "$(arch)" = "i386" ]; then
-	SHARE_DIR=/usr/local/share
-	export PATH=/usr/local/Homebrew/bin:$PATH
+if [ "$(uname -s)" = "Linux" ]; then
+	SHARE_DIR=/usr/share
 else
-	SHARE_DIR=/opt/homebrew/share
-	export PATH=/opt/homebrew/bin:$PATH
-fi
+	if [ "$(arch)" = "i386" ]; then
+		SHARE_DIR=/usr/local/share
+		export PATH=/usr/local/Homebrew/bin:$PATH
+	else
+		SHARE_DIR=/opt/homebrew/share
+		export PATH=/opt/homebrew/bin:$PATH
+	fi
+fi	
+
 export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.8.6/bin:$PATH
 
 # Aliases
