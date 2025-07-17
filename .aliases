@@ -1,8 +1,9 @@
 trash() { mv $@ /Users/gscara/.Trash/ }
 alias \
-	gonuc='cd /Users/gscara/nucl-workspace/workspace' \
+	gonuc='cd /Users/gscara/nucl-workspace/workspace/nucleus-nuclear' \
 	vim='nvim' \
-	
+	ll='ls -l' \
+	cls='cls' \	
 
 
 

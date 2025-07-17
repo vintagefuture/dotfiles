@@ -22,7 +22,7 @@ else
 	fi
 fi	
 
-export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.8.6/bin:$PATH
+export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.9.9/bin:$PATH
 
 # Aliases
 source ~/.aliases
@@ -48,9 +48,6 @@ zstyle ':vcs_info:*' stagedstr ' +i'
 setopt prompt_subst
 export PROMPT_DIRTRIM=1
 PROMPT='%F{green}%*%f %F{blue}%1~ %F{red}${vcs_info_msg_0_}%f'
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 #export DOCKER_HOST=docker
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
@@ -73,3 +70,44 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+ 
+function https-server() {
+  http-server --ssl --cert ~/.localhost-ssl/localhost.crt --key ~/.localhost-ssl/localhost.key
+}
+
+# Helper function to speed up creating new worktrees
+wt() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: wt <new-branch-name> <remote-branch>"
+        echo "Example: wt feature-login origin/develop"
+        return 1
+    fi
+    
+    local NEW_BRANCH=$1
+    local REMOTE_BRANCH=$2
+    
+    echo "Creating branch '$NEW_BRANCH' from '$REMOTE_BRANCH'..."
+    git branch ${NEW_BRANCH} ${REMOTE_BRANCH}
+
+    
+
+    if [ $? -eq 0 ]; then
+        echo "Creating worktree at $HOME/worktrees/${NEW_BRANCH}..."
+        git worktree add $HOME/worktrees/${NEW_BRANCH} ${NEW_BRANCH}
+
+        if [ $? -eq 0 ]; then
+		echo -n "Open the new worktree in VSCode? (don't forget to run yarn) [Y/n]: "
+            read -r response
+            if [[ "$response" =~ ^[Yy]$ ]] || [[ -z "$response" ]]; then
+                code $HOME/worktrees/${NEW_BRANCH}/nuclear-web-frontend/javascript
+            fi
+        fi
+    else
+        echo "Failed to create branch. Aborting worktree creation."
+        return 1
+    fi
+}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
