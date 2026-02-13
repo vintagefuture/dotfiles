@@ -46,9 +46,9 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr ' +i'
 setopt prompt_subst
+setopt INC_APPEND_HISTORY
 export PROMPT_DIRTRIM=1
 PROMPT='%F{green}%*%f %F{blue}%1~ %F{red}${vcs_info_msg_0_}%f'
-#export DOCKER_HOST=docker
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Make autocompletion case-insensitive
@@ -111,3 +111,8 @@ wt() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export DOCKER_HOST=docker
+drush() {
+  docker exec -it -w /var/www/html drupal drush "$@"
+}
+export HISTCONTROL=ignoreboth
