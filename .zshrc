@@ -116,3 +116,4 @@ drush() {
   docker exec -it -w /var/www/html drupal drush "$@"
 }
 export HISTCONTROL=ignoreboth
+export HOMEBREW_NO_AUTO_UPDATE="1"
