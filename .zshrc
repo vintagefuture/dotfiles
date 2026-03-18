@@ -22,7 +22,7 @@ else
 	fi
 fi	
 
-export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.9.9/bin:$PATH
+export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.9.12/bin:$PATH
 
 # Aliases
 source ~/.aliases
@@ -117,3 +117,4 @@ drush() {
 }
 export HISTCONTROL=ignoreboth
 export HOMEBREW_NO_AUTO_UPDATE="1"
+export HOMEBREW_NO_ENV_HINTS=1
