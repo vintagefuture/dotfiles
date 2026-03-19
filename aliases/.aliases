@@ -3,6 +3,7 @@ alias \
 	gonuc='cd /Users/gscara/nucl-workspace/workspace/' \
 	vim='nvim' \
 	ll='ls -l' \
+	lla='ls -al' \
 	cls='cls' \	
 
 
