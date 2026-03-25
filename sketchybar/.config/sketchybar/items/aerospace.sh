@@ -29,7 +29,7 @@ CURRENT_WORKSPACE="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused 2>
 [ -z "$CURRENT_WORKSPACE" ] && exit
 
 # ONE aerospace call gets every window across all workspaces
-ALL_WINDOWS=$(aerospace list-windows --all --format '%{workspace}|%{app-name}' 2>/dev/null)
+ALL_WINDOWS=$(aerospace list-windows --all --format '%{workspace}|%{app-name}|%{window-title}' 2>/dev/null)
 
 # Parse into per-workspace app lists — pure bash, no subprocesses
 # (bash 3.2 compatible: no associative arrays)
@@ -40,6 +40,14 @@ WS_6_ACT=0 WS_7_ACT=0 WS_8_ACT=0 WS_9_ACT=0
 
 while IFS='|' read -r ws app; do
   [ -z "$ws" ] && continue
+
+  # Filter out Outlook reminder windows ("1 Reminder", "2 Reminders", etc.)
+  if [ "$app" = "Microsoft Outlook" ]; then
+    case "$title" in
+      *"Reminder"*|*"Reminders"*) continue ;;
+    esac
+  fi
+
   case "$ws" in
     1) WS_1_ACT=1; WS_1_APPS="${WS_1_APPS:+${WS_1_APPS}|}$app" ;;
     2) WS_2_ACT=1; WS_2_APPS="${WS_2_APPS:+${WS_2_APPS}|}$app" ;;
