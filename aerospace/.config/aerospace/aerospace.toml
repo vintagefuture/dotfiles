@@ -10,8 +10,8 @@ accordion-padding = 30
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
-# Sketchybar integration : instant workspace updates
-exec-on-workspace-change = ['/Users/zion/.local/bin/sketchybar-aerospace-update']
+# Trigger SketchyBar reload whenever a monitor is connected or disconnected
+exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --reload']
 
 # Refresh SketchyBar on AeroSpace startup
 after-startup-command = [
@@ -19,11 +19,10 @@ after-startup-command = [
   'exec-and-forget borders',
 ]
 
-
 # Gaps between windows
 [gaps]
-inner.horizontal = 0
-inner.vertical =   0
+inner.horizontal = 10
+inner.vertical =   10
 outer.left =       5
 outer.right =      5
 outer.bottom =     5
@@ -36,6 +35,8 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 cmd-enter = 'exec-and-forget open -a Ghostty'
+cmd-shift-j = 'exec-and-forget open -a Finder'
+alt-slash = 'layout tiles vertical horizontal'
 
 # Move windows with alt + shift + h/j/k/l
 alt-shift-h = 'move left'
@@ -44,15 +45,15 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # Workspaces: alt + 1-9 to switch
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+cmd-1 = 'workspace 1'
+cmd-2 = 'workspace 2'
+cmd-3 = 'workspace 3'
+cmd-4 = 'workspace 4'
+cmd-5 = 'workspace 5'
+cmd-6 = 'workspace 6'
+cmd-7 = 'workspace 7'
+cmd-8 = 'workspace 8'
+cmd-9 = 'workspace 9'
 
 # Move to workspace: alt + shift + 1-9
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -96,6 +97,10 @@ if.app-id = 'com.apple.systempreferences'
 run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'Bitwarden'
 run = 'layout floating'
 
 # Always tiling apps

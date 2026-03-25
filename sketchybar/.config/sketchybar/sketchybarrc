@@ -65,7 +65,7 @@ sketchybar --add event window_focus
 sketchybar --add event space_change
 
 # Left: Apple + Aerospace workspaces + Current App
-source "$ITEM_DIR/apple.sh"
+#source "$ITEM_DIR/apple.sh"
 
 # Pre-create all workspace items for smooth updates (no add/remove cycle)
 for i in {1..9}; do
