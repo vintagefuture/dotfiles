@@ -50,4 +50,5 @@ font-size = 20
 # resize-overlay-duration = 4s 200ms
 #macos-hidden = always
 keybind = global:cmd+shift+enter=toggle_quick_terminal
+shell-integration-features = ssh-terminfo,ssh-env
 
