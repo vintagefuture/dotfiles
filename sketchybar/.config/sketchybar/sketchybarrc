@@ -99,7 +99,7 @@ sketchybar --add item front_app left \
            --subscribe front_app front_app_switched
 
 # Subscribe to Spotify events
-sketchybar --trigger spotify_change
+#sketchybar --trigger spotify_change
 
 # Right: System indicators and Dato
 source "$ITEM_DIR/recording.sh"
@@ -108,7 +108,7 @@ source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/battery.sh"
 
 # Center: Spotify popup player
-source "$ITEM_DIR/spotify.sh"
+#source "$ITEM_DIR/spotify.sh"
 
 # Event listener for aerospace changes
 # aerospace_workspace_change → fast path (color swap via env vars from exec-on-workspace-change)
