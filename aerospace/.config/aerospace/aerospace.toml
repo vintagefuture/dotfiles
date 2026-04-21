@@ -103,9 +103,11 @@ if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Bitwarden'
 run = 'layout floating'
 [[on-window-detected]]
-if.app-id = 'KeePassXC'
+if.app-id = 'org.keepassxc.keepassxc'
 run = 'layout floating'
-
+[[on-window-detected]]
+if.app-name-regex-substring = 'KeePassXC'
+run = 'layout floating'
 
 # Always tiling apps
 [[on-window-detected]]
