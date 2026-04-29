@@ -120,3 +120,71 @@ export HOMEBREW_NO_AUTO_UPDATE="1"
 export HOMEBREW_NO_ENV_HINTS=1
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# Restart everything
+alias rsa="brew services restart sketchybar && killall AeroSpace && sleep 2 && open -a AeroSpace"
+
+# Switch to custom setup
+alias showsketchy='
+echo "Switching to sketchybar..."
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+defaults write com.apple.dock autohide-menu-bar -bool true
+osascript -e "tell application \"System Preferences\" to quit"
+osascript -e "
+tell application \"System Events\"
+    tell dock preferences
+        set properties to {autohide menu bar: true}
+    end tell
+end tell
+"
+killall SystemUIServer 2>/dev/null
+killall Dock 2>/dev/null
+sleep 2
+brew services start felixkratz/formulae/sketchybar
+sleep 2
+echo "Sketchybar active with menu bar hidden!"
+open -a AeroSpace
+brew services start borders
+'
+
+# Switch back to MacOS default
+alias showmac='
+echo "Switching to macOS menu bar..."
+brew services stop felixkratz/formulae/sketchybar
+sleep 1
+defaults write NSGlobalDomain _HIHideMenuBar -bool false
+defaults write com.apple.dock autohide-menu-bar -bool false
+osascript -e "
+tell application \"System Events\"
+    tell dock preferences
+        set properties to {autohide menu bar: false}
+    end tell
+end tell
+"
+killall SystemUIServer 2>/dev/null
+killall Dock 2>/dev/null
+killall aerospace
+brew services stop borders
+sleep 1
+echo "macOS menu bar restored!"
+'
+
+# AeroSpace cheatsheet
+alias as='echo "
+╭─────────────────────────────────────────╮
+│           AeroSpace Cheatsheet          │
+╰─────────────────────────────────────────╯
+🧭 Focus (navigate between windows):
+   alt-h/j/k/l       →  focus left/down/up/right
+📦 Move windows:
+   alt-shift-h/j/k/l →  move left/down/up/right
+🔧 Resize mode:
+   alt-r             →  enter resize mode
+     h/j/k/l         →  resize left/down/up/right
+     escape          →  exit resize mode
+❌ Quit window:
+   cmd-q             →  close window
+🖥️  Workspaces:
+   alt-1/2/3         →  switch to workspace
+   alt-shift-1/2/3   →  move window to workspace
+"'
+

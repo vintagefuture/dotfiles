@@ -111,7 +111,7 @@ run = 'layout floating'
 
 # Always tiling apps
 [[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
+if.app-id = 'com.apple.Terminal'
 run = 'layout tiling'
 
 [workspace-to-monitor-force-assignment]
