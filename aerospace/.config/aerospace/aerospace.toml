@@ -1,5 +1,5 @@
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations
 enable-normalization-flatten-containers = true
@@ -34,7 +34,7 @@ alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
-cmd-enter = 'exec-and-forget open -a Ghostty'
+cmd-enter = 'exec-and-forget open -n -a Terminal'
 cmd-shift-j = 'exec-and-forget open -a Finder'
 alt-slash = 'layout tiles vertical horizontal'
 
@@ -90,6 +90,15 @@ run = "move-node-to-workspace 5"
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 run = "move-node-to-workspace 2"
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = "move-node-to-workspace 6"
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = "move-node-to-workspace 3"
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 7"
 
 # Always floating apps
 [[on-window-detected]]
