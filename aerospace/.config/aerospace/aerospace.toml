@@ -13,6 +13,13 @@ default-root-container-orientation = 'auto'
 # Trigger SketchyBar reload whenever a monitor is connected or disconnected
 #exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --reload']
 
+# Trigger SketchyBar update on workspace change
+exec-on-workspace-change = [
+    '/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+
 # Refresh SketchyBar on AeroSpace startup
 after-startup-command = [
   'exec-and-forget sketchybar --reload',
@@ -23,10 +30,10 @@ after-startup-command = [
 [gaps]
 inner.horizontal = 10
 inner.vertical =   10
-outer.left =       5
-outer.right =      5
-outer.bottom =     5
-outer.top =        [ { monitor."built-in" = 10 }, 40 ]
+outer.left =       10
+outer.right =      10
+outer.bottom =     10
+outer.top =        [ { monitor."built-in" = 15 }, 45 ]
 
 [mode.main.binding]
 # Focus windows with alt + h/j/k/l
@@ -99,6 +106,9 @@ run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = "move-node-to-workspace 7"
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = "move-node-to-workspace 4"
 
 # Always floating apps
 [[on-window-detected]]
