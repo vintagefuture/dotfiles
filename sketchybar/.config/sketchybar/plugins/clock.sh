@@ -5,5 +5,4 @@
 DATE=$(date '+%a %b %d')
 TIME=$(date '+%H:%M')
 
-sketchybar --set "$NAME" icon="$(date '+%d')" label="$DATE  $TIME"
-
+sketchybar --set "$NAME" icon="$(date '+%d')" label="$(date +"%a %d %b%I:%M %p')"

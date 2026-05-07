@@ -19,7 +19,7 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /
 # Setting up the general bar appearance of the bar
 bar=(
   height=30
-  color=$BAR_COLOR
+  color=0x00000000
   shadow=on
   position=top
   sticky=on
@@ -101,11 +101,12 @@ sketchybar --add item front_app left \
 # Subscribe to Spotify events
 #sketchybar --trigger spotify_change
 
-# Right: System indicators and Dato
-source "$ITEM_DIR/recording.sh"
-source "$ITEM_DIR/mic.sh"
-source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/battery.sh"
+# -- Right Side Items 
+sketchybar --add item calendar right \
+           --set  calendar icon=󰃰 \
+                           background.color=$BACKGROUND_2 \
+                           update_freq=15 \
+                           script="$PLUGIN_DIR/calendar.sh"
 
 # Center: Spotify popup player
 #source "$ITEM_DIR/spotify.sh"
