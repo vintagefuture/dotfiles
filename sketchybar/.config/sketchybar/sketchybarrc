@@ -26,8 +26,9 @@ bar=(
   padding_right=3
   padding_left=3
   corner_radius=9
-  y_offset=5
+  y_offset=10
   margin=10
+  topmost=window
   blur_radius=9
   notch_width=200
 )
@@ -98,18 +99,12 @@ sketchybar --add item front_app left \
            --set front_app script="$PLUGIN_DIR/front_app.sh"            \
            --subscribe front_app front_app_switched
 
-# Subscribe to Spotify events
-#sketchybar --trigger spotify_change
-
 # -- Right Side Items 
 sketchybar --add item calendar right \
            --set  calendar icon=󰃰 \
                            background.color=$BACKGROUND_2 \
                            update_freq=15 \
                            script="$PLUGIN_DIR/calendar.sh"
-
-# Center: Spotify popup player
-#source "$ITEM_DIR/spotify.sh"
 
 # Event listener for aerospace changes
 # aerospace_workspace_change → fast path (color swap via env vars from exec-on-workspace-change)

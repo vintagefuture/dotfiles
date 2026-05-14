@@ -28,12 +28,12 @@ after-startup-command = [
 
 # Gaps between windows
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.right =      10
-outer.bottom =     10
-outer.top =        [ { monitor."built-in" = 15 }, 45 ]
+inner.horizontal = 15
+inner.vertical =   15
+outer.left =       20
+outer.right =      20
+outer.bottom =     15
+outer.top =        [ { monitor."built-in" = 25 }, 55 ]
 
 [mode.main.binding]
 # Focus windows with alt + h/j/k/l
@@ -105,7 +105,7 @@ if.app-id = 'com.jetbrains.intellij'
 run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace 7"
+run = "move-node-to-workspace 9"
 [[on-window-detected]]
 if.app-id = 'com.apple.Terminal'
 run = "move-node-to-workspace 4"
@@ -118,10 +118,6 @@ run = 'layout floating'
 if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-if.window-title-regex-substring = 'Bitwarden'
-run = 'layout floating'
-[[on-window-detected]]
 if.app-id = 'org.keepassxc.keepassxc'
 run = 'layout floating'
 [[on-window-detected]]
@@ -132,6 +128,13 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.Terminal'
 run = 'layout tiling'
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
+run = 'layout tiling'
+[[on-window-detected]]
+if.app-id = 'com.apple.dt.Xcode'
+run = 'layout tiling'
+
 
 [workspace-to-monitor-force-assignment]
 1 = ['main', 1]
