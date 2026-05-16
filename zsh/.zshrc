@@ -139,17 +139,18 @@ end tell
 killall SystemUIServer 2>/dev/null
 killall Dock 2>/dev/null
 sleep 2
-brew services start felixkratz/formulae/sketchybar
+(nohup /opt/homebrew/bin/sketchybar >/dev/null 2>&1 &)
 sleep 2
 echo "Sketchybar active with menu bar hidden!"
-open -a AeroSpace
-brew services start borders
+open -a AeroSpace 2>/dev/null
+(borders 2>/dev/null &)
+open -a AutoRaise
 '
 
 # Switch back to MacOS default
 alias showmac='
 echo "Switching to macOS menu bar..."
-brew services stop felixkratz/formulae/sketchybar
+killall sketchybar
 sleep 1
 defaults write NSGlobalDomain _HIHideMenuBar -bool false
 defaults write com.apple.dock autohide-menu-bar -bool false
@@ -162,8 +163,9 @@ end tell
 "
 killall SystemUIServer 2>/dev/null
 killall Dock 2>/dev/null
-killall aerospace
-brew services stop borders
+killall AeroSpace 2>/dev/null
+killall borders 2>/dev/null
+killall AutoRaise 2>/dev/null
 sleep 1
 echo "macOS menu bar restored!"
 '
