@@ -21,7 +21,6 @@ bar=(
   height=30
   color=0x00000000
   shadow=on
-  position=top
   sticky=on
   padding_right=3
   padding_left=3
@@ -64,9 +63,6 @@ sketchybar --default "${defaults[@]}"
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event window_focus
 sketchybar --add event space_change
-
-# Left: Apple + Aerospace workspaces + Current App
-#source "$ITEM_DIR/apple.sh"
 
 # Pre-create all workspace items for smooth updates (no add/remove cycle)
 for i in {1..9}; do
@@ -122,11 +118,11 @@ sketchybar --update
 
 echo "sketchybar configuration loaded.."
 
-for i in {1..4}; do
-  sketchybar --add space aerospace.workspace.$i left \
-             --set aerospace.workspace.$i associated_display=1 \
-             ...
-done
+#for i in {1..4}; do
+#  sketchybar --add space aerospace.workspace.$i left \
+#             --set aerospace.workspace.$i associated_display=1 \
+#             ...
+#done
 
 # Get number of connected monitors
 MONITOR_COUNT=$(aerospace list-monitors | wc -l | tr -d ' ')
@@ -152,3 +148,11 @@ else
                ...
   done
 fi
+
+# 1. Create a hidden dummy item to host the listener
+sketchybar --add item display_watcher left \
+           --set display_watcher drawing=off
+
+# 2. Subscribe that item to the native 'display_change' event and trigger the reload
+sketchybar --subscribe display_watcher display_change \
+           --set display_watcher script="sketchybar --reload"

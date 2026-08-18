@@ -5,7 +5,5 @@ alias \
 	ll='ls -l' \
 	lla='ls -al' \
 	cls='cls' \	
-
-
-
+  ddevreset='git clean -fdX -e .env && ddev delete $(basename $PWD) && ddev setup_project /Users/gscara/Downloads/db-backup_2026-05-29_15-13-38.sql /Users/gscara/nucl-workspace/workspace/drupal-files' \
 

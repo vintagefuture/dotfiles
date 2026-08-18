@@ -20,7 +20,7 @@ else
 		SHARE_DIR=/opt/homebrew/share
 		export PATH=/opt/homebrew/bin:$PATH
 	fi
-fi	
+fi
 
 export PATH=$HOME/nucl-workspace/workspace/tooling/apache-maven-3.9.12/bin:$PATH
 
@@ -70,7 +70,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
- 
+
 function https-server() {
   http-server --ssl --cert ~/.localhost-ssl/localhost.crt --key ~/.localhost-ssl/localhost.key
 }
@@ -82,14 +82,14 @@ wt() {
         echo "Example: wt feature-login origin/develop"
         return 1
     fi
-    
+
     local NEW_BRANCH=$1
     local REMOTE_BRANCH=$2
-    
+
     echo "Creating branch '$NEW_BRANCH' from '$REMOTE_BRANCH'..."
     git branch ${NEW_BRANCH} ${REMOTE_BRANCH}
 
-    
+
 
     if [ $? -eq 0 ]; then
         echo "Creating worktree at $HOME/worktrees/${NEW_BRANCH}..."
@@ -108,9 +108,6 @@ wt() {
     fi
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #export DOCKER_HOST=docker
 drush() {
   docker exec -it -w /var/www/html drupal drush "$@"
@@ -190,3 +187,28 @@ alias as='echo "
    alt-shift-1/2/3   →  move window to workspace
 "'
 
+export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
+
+# bun completions
+[ -s "/Users/gscara/.bun/_bun" ] && source "/Users/gscara/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+dcx() {
+    docker compose exec "$@"
+}
+
+ddrush() {
+    docker compose exec drupal drush "$@"
+}
+
+ccomposer() {
+    docker compose exec drupal composer "$@"
+}
