@@ -27,12 +27,12 @@ after-startup-command = [
 
 # Gaps between windows
 [gaps]
-inner.horizontal = 15
-inner.vertical =   15
-outer.left =       20
-outer.right =      20
-outer.bottom =     15
-outer.top =        [ { monitor."built-in" = 25 }, 55 ]
+inner.horizontal = 6
+inner.vertical =   6
+outer.left =       6
+outer.right =      6
+outer.bottom =     6
+outer.top =        [ { monitor."built-in" = 15 }, 46 ]
 
 [mode.main.binding]
 # Focus windows with alt + h/j/k/l
