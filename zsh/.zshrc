@@ -187,9 +187,6 @@ alias as='echo "
    alt-shift-1/2/3   →  move window to workspace
 "'
 
-export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
-
 # bun completions
 [ -s "/Users/gscara/.bun/_bun" ] && source "/Users/gscara/.bun/_bun"
 
